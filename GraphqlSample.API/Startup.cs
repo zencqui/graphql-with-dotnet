@@ -1,24 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphiQl;
 using GraphQL;
 using GraphQL.Server.Ui.Playground;
 using GraphQL.Types;
-using GraphqlSample.GraphTypes;
-using GraphqlSample.Models;
-using GraphqlSample.Services;
+using GraphqlSample.API.GraphTypes;
+using GraphqlSample.API.Models;
+using GraphqlSample.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace GraphqlSample
+namespace GraphqlSample.API
 {
     public class Startup
     {
@@ -36,12 +30,17 @@ namespace GraphqlSample
             services.AddHttpContextAccessor();
             services.AddSingleton<ContextServiceLocator>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IEventService, EventService>();
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<EventBookingQuery>();
-            services.AddTransient<UserGraphType>();
             services.AddSingleton<EventBookingMutation>();
-            services.AddTransient<UserInputGraphType>();
-            
+            services.AddSingleton<UserGraphType>();
+            services.AddSingleton<UserInputGraphType>();
+            services.AddSingleton<AuthDataGraphType>();
+            services.AddSingleton<LoginInputGraphType>();
+            services.AddSingleton<EventGraphType>();
+            services.AddSingleton<EventInputGraphType>();
+
             var sp = services.BuildServiceProvider();
             services.AddSingleton<ISchema>(
                 new EventBookingSchema(new FuncDependencyResolver(type => sp.GetService(type))));

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GraphqlSample.Services
+namespace GraphqlSample.API.Services
 {
     public class ContextServiceLocator
     {
@@ -9,6 +9,8 @@ namespace GraphqlSample.Services
 
         public IUserService UserService =>
             _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IUserService>();
+        public IEventService EventService =>
+            _httpContextAccessor.HttpContext.RequestServices.GetRequiredService<IEventService>();
         public ContextServiceLocator(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;

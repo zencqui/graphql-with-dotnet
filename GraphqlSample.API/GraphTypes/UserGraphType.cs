@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
-using GraphqlSample.Models;
+using GraphqlSample.API.Models;
 
-namespace GraphqlSample.GraphTypes
+namespace GraphqlSample.API.GraphTypes
 {
     public class UserGraphType : ObjectGraphType<User>
     {

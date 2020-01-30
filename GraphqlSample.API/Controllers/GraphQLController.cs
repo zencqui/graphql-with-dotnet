@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Types;
-using GraphqlSample.Models;
+using GraphqlSample.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GraphqlSample.API.Controllers

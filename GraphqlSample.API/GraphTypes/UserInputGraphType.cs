@@ -1,7 +1,6 @@
 ﻿using GraphQL.Types;
-using GraphqlSample.Models;
 
-namespace GraphqlSample.GraphTypes
+namespace GraphqlSample.API.GraphTypes
 {
     public class UserInputGraphType : InputObjectGraphType
     {

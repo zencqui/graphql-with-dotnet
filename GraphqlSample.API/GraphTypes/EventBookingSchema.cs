@@ -1,7 +1,7 @@
 ﻿using GraphQL;
 using GraphQL.Types;
 
-namespace GraphqlSample.GraphTypes
+namespace GraphqlSample.API.GraphTypes
 {
     public class EventBookingSchema : Schema
     {

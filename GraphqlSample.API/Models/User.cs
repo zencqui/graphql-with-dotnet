@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace GraphqlSample.Models
+namespace GraphqlSample.API.Models
 {
     public class User
     {
