@@ -10,14 +10,14 @@ namespace GraphqlSample.API.Services
     public class EventService : IEventService
     {
         private readonly IMongoCollection<Event> _events;
-        private readonly IMongoCollection<User> _user;
+        private readonly IMongoCollection<Booking> _booking;
 
         public EventService(IEventBookingDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             _events = database.GetCollection<Event>(settings.EventCollection);
-            _user = database.GetCollection<User>(settings.UserCollection);
+            _booking = database.GetCollection<Booking>(settings.BookingCollection);
         }
         public async Task<Event> CreateEvent(Event @event)
         {
@@ -33,6 +33,19 @@ namespace GraphqlSample.API.Services
         {
             var events = await _events.Find(new BsonDocument()).ToListAsync();
             return events;
+        }
+
+        public async Task<Booking> BookEvent(Booking booking)
+        {
+            booking.createdAt = DateTime.UtcNow;
+            await _booking.InsertOneAsync(booking);
+
+            return booking;
+        }
+
+        public async Task<Event> FindById(string eventId)
+        {
+            return await _events.Find(x => x.eventId == eventId).SingleOrDefaultAsync();
         }
     }
 }

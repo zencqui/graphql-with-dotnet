@@ -18,6 +18,7 @@ namespace GraphqlSample.API.GraphTypes
                     var newUser = context.GetArgument<User>("user");
                     return serviceLocator.UserService.Add(newUser);
                 });
+
             Field<EventGraphType>(
                 "createEvent",
                 arguments: new QueryArguments(
@@ -26,6 +27,15 @@ namespace GraphqlSample.API.GraphTypes
                 {
                     var newEvent = context.GetArgument<Event>("event");
                     return serviceLocator.EventService.CreateEvent(newEvent);
+                });
+
+            Field<BookingGraphType>(
+                "bookEvent",
+                arguments: new QueryArguments(new QueryArgument<BookingInputGraphType> {Name = "booking"}),
+                resolve: context =>
+                {
+                    var newBooking = context.GetArgument<Booking>("booking");
+                    return serviceLocator.EventService.BookEvent(newBooking);
                 });
         }
     }

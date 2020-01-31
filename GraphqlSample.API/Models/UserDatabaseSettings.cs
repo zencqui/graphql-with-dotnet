@@ -6,6 +6,7 @@
         public string DatabaseName { get; set; }
         public string UserCollection { get; set; }
         public string EventCollection { get; set; }
+        public string BookingCollection { get; set; }
     }
 
     public interface IEventBookingDatabaseSettings
@@ -14,5 +15,6 @@
         string DatabaseName { get; set; }
         string UserCollection { get; set; }
         string EventCollection { get; set; }
+        string BookingCollection { get; set; }
     }
 }

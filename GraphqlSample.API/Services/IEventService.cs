@@ -8,5 +8,7 @@ namespace GraphqlSample.API.Services
     {
         Task<Event> CreateEvent(Event @event);
         Task<List<Event>> All();
+        Task<Booking> BookEvent(Booking booking);
+        Task<Event> FindById(string eventId);
     }
 }

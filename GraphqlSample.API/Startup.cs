@@ -40,6 +40,8 @@ namespace GraphqlSample.API
             services.AddSingleton<LoginInputGraphType>();
             services.AddSingleton<EventGraphType>();
             services.AddSingleton<EventInputGraphType>();
+            services.AddSingleton<BookingInputGraphType>();
+            services.AddSingleton<BookingGraphType>();
 
             var sp = services.BuildServiceProvider();
             services.AddSingleton<ISchema>(
