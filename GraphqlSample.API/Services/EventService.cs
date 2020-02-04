@@ -35,6 +35,11 @@ namespace GraphqlSample.API.Services
             return events;
         }
 
+        public async Task<List<Booking>> GetAllBookings()
+        {
+            return await _booking.Find(new BsonDocument()).ToListAsync();
+        }
+
         public async Task<Booking> BookEvent(Booking booking)
         {
             booking.createdAt = DateTime.UtcNow;
